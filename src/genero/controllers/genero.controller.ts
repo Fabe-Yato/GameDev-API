@@ -1,6 +1,6 @@
 import { GeneroService } from './../service/genero.service';
 import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Put} from "@nestjs/common";
-import { Genero } from '../entities/Genero.entity';
+import { Genero } from '../entities/genero.entity';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Genero')
