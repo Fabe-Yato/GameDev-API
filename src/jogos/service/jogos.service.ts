@@ -2,7 +2,6 @@ import { Jogos } from './../entities/jogos.entity';
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, ILike } from 'typeorm';
-import { NOTFOUND } from 'dns';
 
 @Injectable()
 export class JogosService{

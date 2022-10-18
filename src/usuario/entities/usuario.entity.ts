@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger'
 import { MaxLength, IsNotEmpty } from 'class-validator'
 import {Entity, PrimaryGeneratedColumn, Column} from 'typeorm'
 
-@Entity({name: "tb_usuario"})
+@Entity({name: "tb_usuarios"})
 export class Usuario{
 
     @ApiProperty()
