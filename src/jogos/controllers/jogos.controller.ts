@@ -1,8 +1,9 @@
 import { JogosService } from './../service/jogos.service';
 import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Put} from "@nestjs/common";
 import { Jogos } from '../entities/jogos.entity';
+import { ApiTags } from '@nestjs/swagger';
 
-
+@ApiTags('Jogos')
 @Controller('/jogos')
 export class JogosController{
     constructor(

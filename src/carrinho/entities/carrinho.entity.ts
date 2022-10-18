@@ -2,22 +2,28 @@ import { ApiProperty } from '@nestjs/swagger'
 import { MaxLength, IsNotEmpty } from 'class-validator'
 import {Entity, PrimaryGeneratedColumn, Column} from 'typeorm'
 
-@Entity({name: "tb_jogos"})
-export class Jogos{
+@Entity({name: "tb_carrinho"})
+export class Carrinho{
 
     @ApiProperty()
     @PrimaryGeneratedColumn()
-    id: number
+    id_carrinho: number
 
     @ApiProperty()
     @IsNotEmpty()
     @MaxLength(255)
     @Column()
-    nome: string
+    nome_jogo: string
 
     @ApiProperty()
     @IsNotEmpty()
-    @MaxLength(1000)
+    @MaxLength(2000)
+    @Column()
+    imagem: string
+
+    @ApiProperty()
+    @IsNotEmpty()
+    @MaxLength(2000)
     @Column()
     descricao: string
 
@@ -25,16 +31,4 @@ export class Jogos{
     @IsNotEmpty()
     @Column()
     preco: number
-
-    @ApiProperty()
-    @IsNotEmpty()
-    @Column()
-    avaliacao: number
-
-    @ApiProperty()
-    @IsNotEmpty()
-    @MaxLength(5000)
-    @Column()
-    imagem: string
-
 }
