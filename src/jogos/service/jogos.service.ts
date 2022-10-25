@@ -18,6 +18,12 @@ export class JogosService{
         let jogos = await this.JogosRepository.findOne({
             where:{
                 id
+            },
+            relations:{
+                Plataforma: true,
+                capturas: true,
+                genero: true,
+                carrinho: true
             }
         })
         if(!jogos){

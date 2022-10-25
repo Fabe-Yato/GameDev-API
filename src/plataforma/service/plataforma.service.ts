@@ -18,6 +18,9 @@ export class PlataformaService{
         let plataforma = await this.PlataformaRepository.findOne({
             where:{
                 id_plataforma
+            },
+            relations:{
+                jogos: true
             }
         })
         if(!plataforma){

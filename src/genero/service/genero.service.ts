@@ -18,6 +18,9 @@ export class GeneroService{
         let genero = await this.GeneroRepository.findOne({
             where:{
                 id_genero
+            },
+            relations:{
+                jogos: true
             }
         })
         if(!genero){

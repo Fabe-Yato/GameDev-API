@@ -18,6 +18,10 @@ export class CapturasService{
         let Capturas = await this.CapturasRepository.findOne({
             where:{
                 id_imagens
+            },
+            relations:{
+                jogos: true
+                
             }
         })
         if(!Capturas){
