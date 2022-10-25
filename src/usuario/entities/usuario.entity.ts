@@ -1,6 +1,7 @@
+import { Jogos } from './../../jogos/entities/jogos.entity';
 import { ApiProperty } from '@nestjs/swagger'
 import { MaxLength, IsNotEmpty } from 'class-validator'
-import {Entity, PrimaryGeneratedColumn, Column} from 'typeorm'
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from 'typeorm'
 
 @Entity({name: "tb_usuarios"})
 export class Usuario{
@@ -43,4 +44,9 @@ export class Usuario{
     @MaxLength(50)
     @Column()
     senha: string
+
+    @OneToMany(() => Jogos, (jogos) => jogos.id,{
+        onDelete: "CASCADE"
+    })
+    jogos: Jogos
 }

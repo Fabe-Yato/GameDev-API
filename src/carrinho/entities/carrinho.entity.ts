@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { MaxLength, IsNotEmpty } from 'class-validator'
-import {Entity, PrimaryGeneratedColumn, Column} from 'typeorm'
+import { Jogos } from 'src/jogos/entities/jogos.entity'
+import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable} from 'typeorm'
 
 @Entity({name: "tb_carrinho"})
 export class Carrinho{
@@ -31,4 +32,8 @@ export class Carrinho{
     @IsNotEmpty()
     @Column()
     preco: number
+
+    @ManyToMany(() => Jogos, (jogos) => jogos.carrinho)
+    @JoinTable()
+    jogos: Jogos
 }

@@ -1,6 +1,7 @@
+import { Jogos } from './../../jogos/entities/jogos.entity';
 import { ApiProperty } from '@nestjs/swagger'
 import { MaxLength, IsNotEmpty } from 'class-validator'
-import {Entity, PrimaryGeneratedColumn, Column} from 'typeorm'
+import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable} from 'typeorm'
 
 @Entity({name: "tb_plataforma"})
 export class Plataforma{
@@ -21,5 +22,9 @@ export class Plataforma{
     @Column()
     image_plataforma: string
 
+    
+    @ManyToMany(() => Jogos, (jogos) => jogos.Plataforma)
+    @JoinTable()
+    jogos: Jogos
 
 }

@@ -1,7 +1,10 @@
+import { Capturas } from './../../capturas_tela/entities/capturas.entity';
+import { Carrinho } from './../../carrinho/entities/carrinho.entity';
+import { Plataforma } from './../../plataforma/entities/plataforma.entity';
+import { Genero } from './../../genero/entities/genero.entity';
 import { ApiProperty } from '@nestjs/swagger'
 import { MaxLength, IsNotEmpty } from 'class-validator'
-import {Entity, PrimaryGeneratedColumn, Column} from 'typeorm'
-
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable} from 'typeorm'
 @Entity({name: "tb_jogos"})
 export class Jogos{
 
@@ -37,4 +40,20 @@ export class Jogos{
     @Column()
     imagem: string
 
+    @OneToMany(() => Genero, (genero) => genero.jogos,{
+        onDelete: "CASCADE"
+    })
+    genero: Genero
+
+    @ManyToMany(() => Plataforma, (plataforma) => plataforma.jogos)
+    @JoinTable()
+    Plataforma: Plataforma
+
+    @ManyToMany(() => Carrinho, (carrinho) => carrinho.jogos)
+    @JoinTable()
+    carrinho: Carrinho
+
+    @ManyToMany(() => Capturas, (capturas) => capturas.jogos)
+    @JoinTable()
+    capturas: Capturas
 }

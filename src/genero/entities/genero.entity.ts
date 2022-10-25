@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { MaxLength, IsNotEmpty } from 'class-validator'
-import {Entity, PrimaryGeneratedColumn, Column} from 'typeorm'
+import { Jogos } from 'src/jogos/entities/jogos.entity'
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from 'typeorm'
 
 @Entity({name: "tb_genero"})
 export class Genero{
@@ -15,5 +16,9 @@ export class Genero{
     @Column()
     nome_genero: string
 
+    @OneToMany(() => Jogos, (jogos) => jogos.genero,{
+        onDelete: "CASCADE"
+    })
+    jogos: Jogos
 
 }
