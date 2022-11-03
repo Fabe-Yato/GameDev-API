@@ -20,7 +20,7 @@ export class Jogos{
 
     @ApiProperty()
     @IsNotEmpty()
-    @MaxLength(1000)
+    @MaxLength(5000)
     @Column()
     descricao: string
 
@@ -43,6 +43,7 @@ export class Jogos{
     @OneToMany(() => Genero, (genero) => genero.jogos,{
         onDelete: "CASCADE"
     })
+    @ApiProperty({type: ()=> Genero})
     genero: Genero
 
     @ManyToMany(() => Plataforma, (plataforma) => plataforma.jogos)
