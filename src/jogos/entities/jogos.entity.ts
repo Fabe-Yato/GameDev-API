@@ -47,13 +47,16 @@ export class Jogos{
 
     @ManyToMany(() => Plataforma, (plataforma) => plataforma.jogos)
     @JoinTable()
+    @ApiProperty({type: ()=> Plataforma})
     Plataforma: Plataforma
 
     @ManyToMany(() => Carrinho, (carrinho) => carrinho.jogos)
     @JoinTable()
+    @ApiProperty({type: ()=> Carrinho})
     carrinho: Carrinho
 
     @ManyToMany(() => Capturas, (capturas) => capturas.jogos)
     @JoinTable()
+    @ApiProperty({type: ()=> Capturas})
     capturas: Capturas
 }

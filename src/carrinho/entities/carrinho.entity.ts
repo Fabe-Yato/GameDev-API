@@ -35,5 +35,6 @@ export class Carrinho{
 
     @ManyToMany(() => Jogos, (jogos) => jogos.carrinho)
     @JoinTable()
+    @ApiProperty({type: ()=> Jogos})
     jogos: Jogos
 }

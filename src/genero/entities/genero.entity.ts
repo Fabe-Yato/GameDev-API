@@ -19,6 +19,7 @@ export class Genero{
     @OneToMany(() => Jogos, (jogos) => jogos.genero,{
         onDelete: "CASCADE"
     })
+    @ApiProperty({type: ()=> Jogos})
     jogos: Jogos
 
 }

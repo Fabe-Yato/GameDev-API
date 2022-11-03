@@ -25,6 +25,7 @@ export class Plataforma{
     
     @ManyToMany(() => Jogos, (jogos) => jogos.Plataforma)
     @JoinTable()
+    @ApiProperty({type: ()=> Jogos})
     jogos: Jogos
 
 }

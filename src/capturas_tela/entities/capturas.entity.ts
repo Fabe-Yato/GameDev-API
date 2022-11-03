@@ -24,6 +24,7 @@ export class Capturas{
 
     @ManyToMany(() => Jogos, (jogos) => jogos.capturas)
     @JoinTable()
+    @ApiProperty({type: ()=> Jogos})
     jogos: Jogos
 
 }

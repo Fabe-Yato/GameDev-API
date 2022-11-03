@@ -48,5 +48,6 @@ export class Usuario{
     @OneToMany(() => Jogos, (jogos) => jogos.id,{
         onDelete: "CASCADE"
     })
+    @ApiProperty({type: ()=> Jogos})
     jogos: Jogos
 }
