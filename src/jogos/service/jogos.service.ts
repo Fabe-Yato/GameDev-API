@@ -1,7 +1,7 @@
 import { Jogos } from './../entities/jogos.entity';
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, ILike } from 'typeorm';
+import { Repository, ILike, DeleteResult } from 'typeorm';
 
 @Injectable()
 export class JogosService{
@@ -51,5 +51,16 @@ export class JogosService{
             throw new HttpException("Tarefa não encontrada",  HttpStatus.NOT_FOUND)
         }
         return this.JogosRepository.save(jogos)
+    }
+
+    async delete(id: number): Promise<DeleteResult> {
+
+        let jogosDelete = await this.findById(id)
+
+        if (!jogosDelete)
+            throw new HttpException('Postagem não foi encontrada!', HttpStatus.NOT_FOUND)
+
+        return this.JogosRepository.delete(id)
+
     }
 }

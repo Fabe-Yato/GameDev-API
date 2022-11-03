@@ -1,5 +1,5 @@
 import { JogosService } from './../service/jogos.service';
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Put} from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put} from "@nestjs/common";
 import { Jogos } from '../entities/jogos.entity';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -32,5 +32,11 @@ export class JogosController{
     @HttpCode(HttpStatus.OK)
     update(@Body() jogos: Jogos): Promise<Jogos>{
         return this.service.update(jogos)
+    }
+
+    @Delete('/:id')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    delete(@Param('id', ParseIntPipe) id: number){
+        return this.service.delete(id)
     }
 }
