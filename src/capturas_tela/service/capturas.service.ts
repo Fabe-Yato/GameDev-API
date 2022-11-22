@@ -11,7 +11,12 @@ export class CapturasService{
     ){}
 
     async findAll(): Promise<Capturas[]>{
-        return this.CapturasRepository.find()
+        return this.CapturasRepository.find({
+             relations:{
+                jogos: true
+                
+             } 
+        })
     }
 
     async findById(id_imagens: number): Promise<Capturas>{
