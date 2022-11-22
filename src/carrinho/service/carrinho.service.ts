@@ -11,7 +11,12 @@ export class CarrinhoService{
     ){}
 
     async findAll(): Promise<Carrinho[]>{
-        return this.CarrinhoRepository.find()
+        return this.CarrinhoRepository.find({
+         relations:{
+                jogos: true
+                
+            }
+        })
     }
 
     async findById(id_carrinho: number): Promise<Carrinho>{
