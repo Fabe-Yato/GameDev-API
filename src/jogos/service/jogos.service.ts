@@ -11,7 +11,14 @@ export class JogosService{
     ){}
 
     async findAll(): Promise<Jogos[]>{
-        return this.JogosRepository.find()
+        return this.JogosRepository.find({
+            relations:{
+                capturas: true,
+                carrinho: true,
+                genero: true,
+                Plataforma: true
+            }
+        })
     }
 
     async findById(id: number): Promise<Jogos>{
