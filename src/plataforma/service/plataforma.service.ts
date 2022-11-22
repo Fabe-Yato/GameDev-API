@@ -11,7 +11,12 @@ export class PlataformaService{
     ){}
 
     async findAll(): Promise<Plataforma[]>{
-        return this.PlataformaRepository.find()
+        return this.PlataformaRepository.find({
+         relations:{
+                jogos: true
+                
+            }
+        })
     }
 
     async findById(id_plataforma: number): Promise<Plataforma>{
