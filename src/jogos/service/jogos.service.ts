@@ -16,7 +16,7 @@ export class JogosService{
                 capturas: true,
                 carrinho: true,
                 genero: true,
-                Plataforma: true
+           
             }
         })
     }
