@@ -11,12 +11,7 @@ export class GeneroService{
     ){}
 
     async findAll(): Promise<Genero[]>{
-        return this.GeneroRepository.find({
-         relations:{
-                jogos: true
-                
-            }
-        })
+        return this.GeneroRepository.find()
     }
 
     async findById(id_genero: number): Promise<Genero>{
