@@ -15,7 +15,8 @@ export class JogosService{
             relations:{
                 capturas: true,
                 carrinho: true, 
-                genero: true
+                genero: true, 
+                Plataforma: true
             }
         })
     }

@@ -22,7 +22,7 @@ export class JogosController{
         return this.service.create(jogos)
     }
 
-    @Put()
+    @Put('/:id')
     @HttpCode(HttpStatus.OK)
     update(@Body() jogos: Jogos): Promise<Jogos>{
         return this.service.update(jogos)

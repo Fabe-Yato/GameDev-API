@@ -1,5 +1,5 @@
 import { PlataformaService } from './../service/plataforma.service';
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Put} from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Put, ParseIntPipe} from "@nestjs/common";
 import { Plataforma } from '../entities/plataforma.entity';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -16,10 +16,10 @@ export class PlataformaController{
         return this.service.findAll()
     }
 
-    @Get('nome/:nome')
+    @Get('/:id')
     @HttpCode(HttpStatus.OK)
-    findByNome(@Param('nome')nome: string): Promise<Plataforma []>{
-        return this.service.findByNome(nome)
+    findById(@Param('id', ParseIntPipe) id: number): Promise<Plataforma> {
+        return this.service.findById(id)
     }
 
     @Post()

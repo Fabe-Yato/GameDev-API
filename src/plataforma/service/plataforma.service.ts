@@ -33,15 +33,6 @@ export class PlataformaService{
         }
         return plataforma
     } 
-
-    async findByNome(nome_plataforma: string): Promise<Plataforma[]>{
-        return this.PlataformaRepository.find({
-            where:{
-                nome_plataforma: ILike(`%${nome_plataforma}%`)
-            }
-        })
-    }
-
     async create(plataforma: Plataforma): Promise<Plataforma>{
         return this.PlataformaRepository.save(plataforma)
     }
