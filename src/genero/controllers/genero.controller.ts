@@ -1,5 +1,5 @@
 import { GeneroService } from './../service/genero.service';
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Put, ParseIntPipe} from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Put, ParseIntPipe, Delete} from "@nestjs/common";
 import { Genero } from '../entities/genero.entity';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -28,9 +28,15 @@ export class GeneroController{
         return this.service.create(genero)
     }
 
-    @Put()
+    @Put("/:id")
     @HttpCode(HttpStatus.OK)
     update(@Body() genero: Genero): Promise<Genero>{
         return this.service.update(genero)
+    }
+
+    @Delete('/:id')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    delete(@Param('id', ParseIntPipe) id: number){
+        return this.service.delete(id)
     }
 }
