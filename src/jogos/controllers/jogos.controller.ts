@@ -16,12 +16,6 @@ export class JogosController{
         return this.service.findAll()
     }
 
-    @Get('nome/:nome')
-    @HttpCode(HttpStatus.OK)
-    findByNome(@Param('nome')nome: string): Promise<Jogos []>{
-        return this.service.findByNome(nome)
-    }
-
     @Post()
     @HttpCode(HttpStatus.CREATED)
     create(@Body() jogos: Jogos): Promise<Jogos>{

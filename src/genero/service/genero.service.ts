@@ -1,7 +1,7 @@
 import { Genero } from './../entities/genero.entity';
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, ILike } from 'typeorm';
+import { Repository, DeleteResult } from 'typeorm';
 
 @Injectable()
 export class GeneroService{
@@ -11,7 +11,11 @@ export class GeneroService{
     ){}
 
     async findAll(): Promise<Genero[]>{
-        return this.GeneroRepository.find()
+        return this.GeneroRepository.find({
+            relations:{
+                jogos: true
+            }
+        })
     }
 
     async findById(id_genero: number): Promise<Genero>{
@@ -28,15 +32,6 @@ export class GeneroService{
         }
         return genero
     } 
-
-    async findByNome(nome_genero: string): Promise<Genero[]>{
-        return this.GeneroRepository.find({
-            where:{
-                nome_genero: ILike(`%${nome_genero}%`)
-            }
-        })
-    }
-
     async create(genero: Genero): Promise<Genero>{
         return this.GeneroRepository.save(genero)
     }
@@ -49,4 +44,16 @@ export class GeneroService{
         }
         return this.GeneroRepository.save(genero)
     }
+
+    async delete(id: number): Promise<DeleteResult> {
+
+        let postagemDelete = await this.findById(id)
+
+        if (!postagemDelete)
+            throw new HttpException('Postagem não foi encontrada!', HttpStatus.NOT_FOUND)
+
+        return this.GeneroRepository.delete(id)
+
+    }
+
 }

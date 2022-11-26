@@ -14,7 +14,8 @@ export class JogosService{
         return this.JogosRepository.find({
             relations:{
                 capturas: true,
-                carrinho: true
+                carrinho: true, 
+                genero: true
             }
         })
     }

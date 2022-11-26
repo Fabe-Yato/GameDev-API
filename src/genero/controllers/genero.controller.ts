@@ -1,5 +1,5 @@
 import { GeneroService } from './../service/genero.service';
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Put} from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Put, ParseIntPipe} from "@nestjs/common";
 import { Genero } from '../entities/genero.entity';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -16,10 +16,10 @@ export class GeneroController{
         return this.service.findAll()
     }
 
-    @Get('nome/:nome')
+    @Get('/:id')
     @HttpCode(HttpStatus.OK)
-    findByNome(@Param('nome')nome: string): Promise<Genero []>{
-        return this.service.findByNome(nome)
+    findById(@Param('id', ParseIntPipe) id: number): Promise<Genero> {
+        return this.service.findById(id)
     }
 
     @Post()
