@@ -11,7 +11,6 @@ export class Capturas{
     id_imagens: number
 
     @ApiProperty()
-    @IsNotEmpty()
     @MaxLength(300)
     @Column()
     nome_jogo: string
