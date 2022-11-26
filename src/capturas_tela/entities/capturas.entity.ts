@@ -10,10 +10,10 @@ export class Capturas{
     @PrimaryGeneratedColumn()
     id_imagens: number
 
-    @ApiProperty()
-    @MaxLength(300)
-    @Column()
-    nome_jogo: string
+    // @ApiProperty()
+    // @MaxLength(300)
+    // @Column()
+    // nome_jogo: string
 
     @ApiProperty()
     @IsNotEmpty()
