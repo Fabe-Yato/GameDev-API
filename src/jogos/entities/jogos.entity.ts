@@ -4,7 +4,7 @@ import { Plataforma } from './../../plataforma/entities/plataforma.entity';
 import { Genero } from './../../genero/entities/genero.entity';
 import { ApiProperty } from '@nestjs/swagger'
 import { MaxLength, IsNotEmpty } from 'class-validator'
-import {Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable, ManyToOne} from 'typeorm'
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable} from 'typeorm'
 @Entity({name: "tb_jogos"})
 export class Jogos{
 
@@ -40,7 +40,7 @@ export class Jogos{
     @Column()
     imagem: string
 
-    @ManyToOne(() => Genero, (genero) => genero.jogos,{
+    @OneToMany(() => Genero, (genero) => genero.jogos,{
         onDelete: "CASCADE"
     })
     @ApiProperty({type: ()=> Genero})

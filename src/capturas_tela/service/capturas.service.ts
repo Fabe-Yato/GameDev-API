@@ -1,7 +1,7 @@
 import { Capturas } from './../entities/capturas.entity';
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, ILike } from 'typeorm';
+import { Repository, ILike, DeleteResult } from 'typeorm';
 
 @Injectable()
 export class CapturasService{
@@ -46,5 +46,16 @@ export class CapturasService{
             throw new HttpException("Tarefa não encontrada",  HttpStatus.NOT_FOUND)
         }
         return this.CapturasRepository.save(Capturas)
+    }
+
+    async delete(id: number): Promise<DeleteResult> {
+
+        let postagemDelete = await this.findById(id)
+
+        if (!postagemDelete)
+            throw new HttpException('Postagem não foi encontrada!', HttpStatus.NOT_FOUND)
+
+        return this.CapturasRepository.delete(id)
+
     }
 }

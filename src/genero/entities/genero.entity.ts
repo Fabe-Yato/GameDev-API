@@ -16,7 +16,7 @@ export class Genero{
     @Column()
     nome_genero: string
 
-    @OneToMany(() => Jogos, (jogos) => jogos.genero,{
+    @ManyToOne(() => Jogos, (jogos) => jogos.genero,{
         onDelete: "CASCADE"
     })
     @ApiProperty({type: ()=> Jogos})
