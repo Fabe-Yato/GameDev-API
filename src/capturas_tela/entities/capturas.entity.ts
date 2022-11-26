@@ -12,6 +12,12 @@ export class Capturas{
 
     @ApiProperty()
     @IsNotEmpty()
+    @MaxLength(300)
+    @Column()
+    nome_jogo: string
+
+    @ApiProperty()
+    @IsNotEmpty()
     @MaxLength(2000)
     @Column()
     imagem1: string
