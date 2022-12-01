@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { MaxLength, IsNotEmpty } from 'class-validator';
 import { Jogos } from 'src/jogos/entities/jogos.entity';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 @Entity({ name: 'tb_genero' })
 export class Genero {
@@ -15,7 +15,7 @@ export class Genero {
   @Column()
   nome_genero: string;
 
-  @ManyToOne(() => Jogos, (jogos) => jogos.genero, {
+  @OneToMany(() => Jogos, (jogos) => jogos.genero, {
     onDelete: 'CASCADE',
   })
   @ApiProperty({ type: () => Jogos })

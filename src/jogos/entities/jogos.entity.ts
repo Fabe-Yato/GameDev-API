@@ -8,9 +8,9 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  OneToMany,
   ManyToMany,
   JoinTable,
+  ManyToOne,
 } from 'typeorm';
 @Entity({ name: 'tb_jogos' })
 export class Jogos {
@@ -46,7 +46,7 @@ export class Jogos {
   @Column()
   imagem: string;
 
-  @OneToMany(() => Genero, (genero) => genero.jogos, {
+  @ManyToOne(() => Genero, (genero) => genero.jogos, {
     onDelete: 'CASCADE',
   })
   @ApiProperty({ type: () => Genero })
