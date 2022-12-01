@@ -1,36 +1,51 @@
 import { CarrinhoService } from './../service/carrinho.service';
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Put} from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Post,
+  Put,
+  ParseIntPipe,
+  Delete,
+} from '@nestjs/common';
 import { Carrinho } from '../entities/carrinho.entity';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Carrinho')
 @Controller('/carrinho')
-export class CarrinhoController{
-    constructor(
-        private readonly service: CarrinhoService
-    ){}
+export class CarrinhoController {
+  constructor(private readonly service: CarrinhoService) {}
 
-    @Get()
-    @HttpCode(HttpStatus.OK)
-    findAll(): Promise <Carrinho []>{
-        return this.service.findAll()
-    }
+  @Get()
+  @HttpCode(HttpStatus.OK)
+  findAll(): Promise<Carrinho[]> {
+    return this.service.findAll();
+  }
 
-    @Get('nome/:nome')
-    @HttpCode(HttpStatus.OK)
-    findByNome(@Param('nome')nome: string): Promise<Carrinho []>{
-        return this.service.findByNome(nome)
-    }
+  @Get('nome/:nome')
+  @HttpCode(HttpStatus.OK)
+  findByNome(@Param('nome') nome: string): Promise<Carrinho[]> {
+    return this.service.findByNome(nome);
+  }
 
-    @Post()
-    @HttpCode(HttpStatus.CREATED)
-    create(@Body() Carrinho: Carrinho): Promise<Carrinho>{
-        return this.service.create(Carrinho)
-    }
+  @Post()
+  @HttpCode(HttpStatus.CREATED)
+  create(@Body() Carrinho: Carrinho): Promise<Carrinho> {
+    return this.service.create(Carrinho);
+  }
 
-    @Put()
-    @HttpCode(HttpStatus.OK)
-    update(@Body() Carrinho: Carrinho): Promise<Carrinho>{
-        return this.service.update(Carrinho)
-    }
+  @Put()
+  @HttpCode(HttpStatus.OK)
+  update(@Body() Carrinho: Carrinho): Promise<Carrinho> {
+    return this.service.update(Carrinho);
+  }
+
+  @Delete('/:id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  delete(@Param('id', ParseIntPipe) id: number) {
+    return this.service.delete(id);
+  }
 }
